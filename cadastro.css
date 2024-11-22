@@ -1,0 +1,17 @@
+
+
+input[type="text"],
+input[type="date"],
+input[type="email"],
+input[type="password"],
+select {
+    color: white;
+    background-color: #097188;
+    border: none;
+    border-radius: 2px;
+}
+
+input[type="submit"] {
+   
+    color: rgb(0, 0, 0);
+}

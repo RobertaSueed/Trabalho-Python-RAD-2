@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento de Consulta</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="agendamento.css">
+</head>
+
+<body>
+    <header>
+        <div class="text-center configuracoes_logo">
+            <img src="images/L_LOGO.png" alt="Logo_Plataforma" width="150rem" height="150rem">
+        </div>
+        <!-- BARRA DE NAVEGAÇÃO -->
+        <nav class="navbar navbar-expand-sm shadow-lg navbar-light bg-light justify-content-between">
+            <a href="home.html" class="navbar-brand fonte_navBar cor_nome">Consultas Médicas</a>
+        </nav>
+    </header>
+
+    <main class="d-flex justify-content-center mb-5">
+        <div class="d-flex flex-column rounded shadow-lg p-5 mt-5 bg-light background mb-5">
+            <form class="d-flex flex-column gap-5" action="confirmar_agendamento.html" method="post">
+                <h1 style="font-family: 'Signika Negative', sans-serif;" class="mt-3">Agendamento</h1>
+                <hr>
+
+                <!-- Tipo de Serviço -->
+                <div>
+                    <label for="tipo_servico">Tipo de Serviço:</label><br>
+                    <select id="tipo_servico" name="tipo_servico" onchange="atualizarEspecialidades()">
+                        <option value="consulta">Consulta</option>
+                        <option value="exame">Exames</option>
+                    </select><br>
+                </div>
+
+                <div>
+                    <label for="especialidade">Especialidade Médica:</label><br>
+                    <select id="especialidade" name="especialidade">
+                        <!-- As opções serão inseridas dinamicamente via JavaScript -->
+                    </select><br>
+                </div>
+
+                <!-- Convênio -->
+                <div>
+                    <label for="convenio">Convênio:</label><br>
+                    <select id="convenio" name="convenio">
+                        <option value="Unimed">Unimed</option>
+                        <option value="Planserv">Planserv</option>
+                        <option value="Amil">Amil</option>
+                        <option value="Hapvida">Hapvida</option>
+                        <option value="Promedica">Promedica</option>
+                        <option value="Bradesco Saúde">Bradesco Saúde</option>
+                        <option value="SulAmerica">SulAmerica</option>
+                        <option value="Outro">Outro</option>
+                    </select><br>
+                </div>
+
+                <input class="btn mt-3 botaoPadrao" type="submit" value="Confirmar Agendamento">
+            </form>
+        </div>
+    </main>
+
+
+    
+    <a class="btn mb-5 m-5 botaoPadraoVoltar" href="cadastro.html">Voltar</a>
+
+
+
+
+    
+    <!-- FOOTER -->
+    <footer class="text-center text-lg-start bg-dark text-light p-4">
+        <!-- Footer content as before -->
+    </footer>
+
+    <script>
+        // Atualiza as especialidades com base no tipo de serviço
+        function atualizarEspecialidades() {
+            const tipoServico = document.getElementById("tipo_servico").value;
+            const especialidade = document.getElementById("especialidade");
+
+            // Limpa as opções de especialidade antes de adicionar novas
+            while (especialidade.options.length > 0) {
+                especialidade.remove(0);
+            }
+
+            // Adiciona as opções com base no tipo de serviço selecionado
+            if (tipoServico === "consulta") {
+                const especialidadesConsulta = ["Cardiologia", "Dermatologia", "Ortopedia", "Pediatria", "Ginecologia", "Oftalmologia"];
+                especialidadesConsulta.forEach(function(opcao) {
+                    const option = document.createElement("option");
+                    option.text = opcao;
+                    especialidade.add(option);
+                });
+            } else if (tipoServico === "exame") {
+                const especialidadesExame = ["Exame de Sangue", "Raio-X", "Ultrassonografia", "Eletrocardiograma", "Ressonância Magnética"];
+                especialidadesExame.forEach(function(opcao) {
+                    const option = document.createElement("option");
+                    option.text = opcao;
+                    especialidade.add(option);
+                });
+            }
+        }
+
+        // Chama a função ao carregar a página
+        document.addEventListener("DOMContentLoaded", function() {
+            atualizarEspecialidades();
+        });
+    </script>
+
+</body>
+</html>
